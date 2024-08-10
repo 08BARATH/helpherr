@@ -1,0 +1,84 @@
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ca6877;
+  padding: 5px 30px;
+  color: rgb(230, 230, 230);
+}
+
+.navbar-logo a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo a:hover {
+  color: #ffffff;
+}
+
+.logo-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  margin-right: 10px; /* Space between logo and text */
+}
+.logo-image1 {
+  width: 17px;
+  height: 20px;
+  border-radius: 0px;
+  background-color: #ca6877;
+  margin-top: 5px;
+  color: #ca6877;/* Space between logo and text */
+}
+.logo-image1 :hover img{
+  transform: scale(1.3);
+}
+
+
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center; /* Align items vertically */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar-links li {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.navbar-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.navbar-links li a:hover {
+  
+  text-shadow: 0 5px 2px rgba(0, 0, 0, 0.5); /* Add subtle shadow effect */
+}
+
+.emergency {
+  background-color: rgb(255, 0, 0);
+  border: none; /* Remove default button border */
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding: 4px 10px; /* Adjusted padding for better appearance */
+  color: rgb(255, 255, 255); /* Ensure text is visible */
+  font-size: 16px; /* Match font size with other links */
+  cursor: pointer; /* Indicate button is clickable */
+}
+
+.emergency:hover {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adjust box shadow for hover effect */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}

@@ -1,0 +1,58 @@
+.room-booking-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/roomm.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4; /* Fallback color */
+    display: flex;
+    height: 100vh;
+  }
+  
+  .room-booking-container {
+    margin: 50px auto;
+    padding: 20px;
+    width :500px;
+    margin-left: 750px;
+    height: 500px;
+    background: #FFC0CB;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h4 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .bookingform {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bookingform input,
+  .bookingform select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .bookingform button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E37383;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .bookingform button:hover {
+    background-color: #bb5f6d;
+  }
+  

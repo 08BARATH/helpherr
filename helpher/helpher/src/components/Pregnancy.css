@@ -1,0 +1,85 @@
+.bg {
+    background-color: #FFC0CB;
+    padding: 20px;
+    height: 100vh;
+    background-image: url('../assets/pregnancy.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .grid {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    margin-left: 500px;
+    margin-top: 40px;
+  }
+  
+  .doctor-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 500px;
+    margin-top: 0px;
+  }
+  
+  .doctor-card {
+    background-color: #FFC0CB;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    height: 300px;
+  }
+  
+  .doctor-image {
+    margin-bottom: 0px;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 200px;
+  }
+  
+  .doctor-name {
+    font-size: 1.2em;
+    margin-bottom: 2px;
+  }
+  
+  .doctor-specialty {
+    color: #E37383;
+    margin-bottom: 1px;
+  }
+  
+  .whatsapp-link {
+    text-decoration: none;
+    color: #AA336A;
+  }
+  
+  .whatsapp-link:hover {
+    color: black;
+  }
+  
+  .card-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .whatsapp-image {
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+    margin-bottom: px;
+  }
+  
+  .doctor-card:hover {
+    transform: scale(1.009);
+  }
+  

@@ -1,0 +1,56 @@
+.about-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./assets/emergencyy.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4; 
+  }
+  
+  .about-container {
+    background-color: #FFC0CB;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    height: 90%;
+    max-width: 800px;
+    margin-left: 660px;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.5s, box-shadow 0.5s;
+  }
+  
+  .about-header {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 0px;
+    border-radius: 5px 5px 0 0;
+    font-size: large;
+  }
+  
+  .about-content {
+    padding: 10px;
+    font-size: medium;
+  }
+  
+  .about-content h2 {
+    margin-top: 20px;
+    font-size: medium;
+  }
+  
+  .about-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .about-content p,
+  .about-content li {
+    line-height: 1.5;
+  }
+  
+
+  

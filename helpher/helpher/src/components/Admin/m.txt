@@ -1,0 +1,531 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import {
+  Container,
+  Grid,
+  Paper,
+  Button,
+  Typography,
+  IconButton,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
+  AppBar,
+  Toolbar,
+  CssBaseline
+} from '@mui/material';
+import {
+  Add,
+  Edit,
+  Delete,
+  People,
+  DirectionsBike,
+  Security,
+  LocalHospital
+} from '@mui/icons-material';
+
+const drawerWidth = 240;
+
+const Dashboard = () => {
+  const [users, setUsers] = useState([]);
+  const [bikeRides, setBikeRides] = useState([]);
+  const [complaints, setComplaints] = useState([]);
+  const [napkinRequests, setNapkinRequests] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogType, setDialogType] = useState('');
+  const [currentItem, setCurrentItem] = useState(null);
+  const [selectedView, setSelectedView] = useState('users');
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    phonenumber: '',
+    name: '',
+    age: '',
+    phoneNumber: '',
+    complaintText: '',
+    address: '',
+    location: '',
+    requestDate: ''
+  });
+
+  useEffect(() => {
+    if (selectedView === 'users') {
+      fetchUsers();
+    } else if (selectedView === 'bikeRides') {
+      fetchBikeRides();
+    } else if (selectedView === 'cyberCrime') {
+      fetchComplaints();
+    } else if (selectedView === 'napkinRequests') {
+      fetchNapkinRequests();
+    }
+  }, [selectedView]);
+
+  const fetchUsers = () => {
+    axios.get('http://localhost:8080/login/users')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the users!', error);
+      });
+  };
+
+  const fetchBikeRides = () => {
+    axios.get('http://localhost:8080/api/ride-requests/getall')
+      .then(response => {
+        setBikeRides(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the bike rides!', error);
+      });
+  };
+
+  const fetchComplaints = () => {
+    axios.get('http://localhost:8080/api/complaints/getall')
+      .then(response => {
+        setComplaints(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the complaints!', error);
+      });
+  };
+
+  const fetchNapkinRequests = () => {
+    axios.get('http://localhost:8080/api/period-requests/getall')
+      .then(response => {
+        setNapkinRequests(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the napkin requests!', error);
+      });
+  };
+
+  const handleClickOpen = (type, item) => {
+    setDialogType(type);
+    setCurrentItem(item);
+    setFormData(item ? { ...item } : { username: '', email: '', phonenumber: '', name: '', age: '', phoneNumber: '', complaintText: '', address: '', location: '', requestDate: '' });
+    setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    setOpenDialog(false);
+    setCurrentItem(null);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    if (dialogType === 'users') {
+      if (currentItem) {
+        axios.put(http://localhost:8080/login/${currentItem.id}, formData)
+          .then(() => {
+            fetchUsers(); // Re-fetch users after update
+          })
+          .catch(error => {
+            console.error('There was an error updating the user!', error);
+          });
+      } else {
+        axios.post('http://localhost:8080/login', formData)
+          .then(() => {
+            fetchUsers(); // Re-fetch users after addition
+          })
+          .catch(error => {
+            console.error('There was an error creating the user!', error);
+          });
+      }
+    } else if (dialogType === 'bikeRides') {
+      // Handle bike rides similarly if needed
+    } else if (dialogType === 'cyberCrime') {
+      if (currentItem) {
+        axios.put(http://localhost:8080/api/complaints/${currentItem.id}, formData)
+          .then(() => {
+            fetchComplaints(); // Re-fetch complaints after update
+          })
+          .catch(error => {
+            console.error('There was an error updating the complaint!', error);
+          });
+      } else {
+        axios.post('http://localhost:8080/api/complaints/file', formData)
+          .then(() => {
+            fetchComplaints(); // Re-fetch complaints after addition
+          })
+          .catch(error => {
+            console.error('There was an error creating the complaint!', error);
+          });
+      }
+    } else if (dialogType === 'napkinRequests') {
+      if (currentItem) {
+        axios.put(http://localhost:8080/api/period-requests/${currentItem.id}, formData)
+          .then(() => {
+            fetchNapkinRequests(); // Re-fetch napkin requests after update
+          })
+          .catch(error => {
+            console.error('There was an error updating the napkin request!', error);
+          });
+      } else {
+        axios.post('http://localhost:8080/api/period-requests/request', formData)
+          .then(() => {
+            fetchNapkinRequests(); // Re-fetch napkin requests after addition
+          })
+          .catch(error => {
+            console.error('There was an error creating the napkin request!', error);
+          });
+      }
+    }
+    handleClose();
+  };
+
+  const handleDelete = (type, id) => {
+    if (type === 'users') {
+      axios.delete(http://localhost:8080/login/${id})
+        .then(() => {
+          fetchUsers(); // Re-fetch users after deletion
+        })
+        .catch(error => {
+          console.error('There was an error deleting the user!', error);
+        });
+    } else if (type === 'bikeRides') {
+      // Handle bike rides similarly if needed
+    } else if (type === 'cyberCrime') {
+      axios.delete(http://localhost:8080/api/complaints/${id})
+        .then(() => {
+          fetchComplaints(); // Re-fetch complaints after deletion
+        })
+        .catch(error => {
+          console.error('There was an error deleting the complaint!', error);
+        });
+    } else if (type === 'napkinRequests') {
+      axios.delete(http://localhost:8080/api/period-requests/${id})
+        .then(() => {
+          fetchNapkinRequests(); // Re-fetch napkin requests after deletion
+        })
+        .catch(error => {
+          console.error('There was an error deleting the napkin request!', error);
+        });
+    }
+  };
+
+  const renderTable = (data = [], type) => (
+    <TableContainer component={Paper} style={{ marginTop: 10, backgroundColor: '#ffffff', boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)' }}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>{type === 'users' ? 'Name' : type === 'bikeRides' ? 'Ride ID' : type === 'cyberCrime' ? 'Complaint ID' : 'Request ID'}</TableCell>
+            <TableCell>{type === 'users' ? 'Email' : type === 'bikeRides' ? 'User Name' : type === 'cyberCrime' ? 'Name' : 'Name'}</TableCell>
+            <TableCell>{type === 'users' ? 'Phone Number' : type === 'bikeRides' ? 'Pickup Location' : type === 'cyberCrime' ? 'Age' : 'Address'}</TableCell>
+            {type !== 'users' && type !== 'cyberCrime' && type !== 'napkinRequests' && (
+              <>
+                <TableCell>Destination Location</TableCell>
+                <TableCell>Booking Time</TableCell>
+              </>
+            )}
+            {type === 'cyberCrime' && (
+              <>
+                <TableCell>Phone Number</TableCell>
+                <TableCell>Complaint Text</TableCell>
+              </>
+            )}
+            {type === 'napkinRequests' && (
+              <>
+                <TableCell>Location</TableCell>
+                <TableCell>Request Date</TableCell>
+              </>
+            )}
+            <TableCell>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell>{type === 'users' ? item.username : type === 'bikeRides' ? item.id : type === 'cyberCrime' ? item.id : item.id}</TableCell>
+              <TableCell>{type === 'users' ? item.email : type === 'bikeRides' ? item.userName : type === 'cyberCrime' ? item.name : item.name}</TableCell>
+              <TableCell>{type === 'users' ? item.phonenumber : type === 'bikeRides' ? item.pickupLocation : type === 'cyberCrime' ? item.phoneNumber : item.address}</TableCell>
+              {type === 'bikeRides' && (
+                <>
+                  <TableCell>{item.destinationLocation}</TableCell>
+                  <TableCell>{item.bookingTime}</TableCell>
+                </>
+              )}
+              {type === 'cyberCrime' && (
+                <>
+                  <TableCell>{item.phoneNumber}</TableCell>
+                  <TableCell>{item.complaintText}</TableCell>
+                </>
+              )}
+              {type === 'napkinRequests' && (
+                <>
+                  <TableCell>{item.location}</TableCell>
+                  <TableCell>{item.requestDate}</TableCell>
+                </>
+              )}
+              <TableCell>
+                <IconButton onClick={() => handleClickOpen(type, item)}>
+                  <Edit />
+                </IconButton>
+                <IconButton onClick={() => handleDelete(type, item.id)}>
+                  <Delete />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar position="fixed" sx={{ width: calc(100% - ${drawerWidth}px), ml: ${drawerWidth}px, backgroundColor: '#ff66a3' }}>
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Admin Dashboard
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            backgroundColor: '#ff66a3'
+          }
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar />
+        <List>
+          <ListItem button onClick={() => setSelectedView('users')}>
+            <ListItemIcon><People /></ListItemIcon>
+            <ListItemText primary="Users" />
+          </ListItem>
+          <ListItem button onClick={() => setSelectedView('bikeRides')}>
+            <ListItemIcon><DirectionsBike /></ListItemIcon>
+            <ListItemText primary="Bike Rides" />
+          </ListItem>
+          <ListItem button onClick={() => setSelectedView('cyberCrime')}>
+            <ListItemIcon><Security /></ListItemIcon>
+            <ListItemText primary="Cyber Crime" />
+          </ListItem>
+          <ListItem button onClick={() => setSelectedView('napkinRequests')}>
+            <ListItemIcon><LocalHospital /></ListItemIcon>
+            <ListItemText primary="Napkin Requests" />
+          </ListItem>
+        </List>
+      </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+        <Toolbar />
+        <Container>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<Add />}
+                onClick={() => handleClickOpen(selectedView)}
+              >
+                Add {selectedView.slice(0, -1)} {/* pluralize */}
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              {selectedView === 'users' && renderTable(users, 'users')}
+              {selectedView === 'bikeRides' && renderTable(bikeRides, 'bikeRides')}
+              {selectedView === 'cyberCrime' && renderTable(complaints, 'cyberCrime')}
+              {selectedView === 'napkinRequests' && renderTable(napkinRequests, 'napkinRequests')}
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+      <Dialog open={openDialog} onClose={handleClose}>
+        <DialogTitle>{currentItem ? Edit ${dialogType.slice(0, -1)} : Add ${dialogType.slice(0, -1)}}</DialogTitle>
+        <DialogContent>
+          {selectedView === 'users' ? (
+            <>
+              <TextField
+                autoFocus
+                margin="dense"
+                name="username"
+                label="Username"
+                type="text"
+                fullWidth
+                value={formData.username}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="email"
+                label="Email"
+                type="email"
+                fullWidth
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="phonenumber"
+                label="Phone Number"
+                type="text"
+                fullWidth
+                value={formData.phonenumber}
+                onChange={handleInputChange}
+              />
+            </>
+          ) : selectedView === 'bikeRides' ? (
+            <>
+              <TextField
+                autoFocus
+                margin="dense"
+                name="userName"
+                label="User Name"
+                type="text"
+                fullWidth
+                value={formData.userName}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="pickupLocation"
+                label="Pickup Location"
+                type="text"
+                fullWidth
+                value={formData.pickupLocation}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="destinationLocation"
+                label="Destination Location"
+                type="text"
+                fullWidth
+                value={formData.destinationLocation}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="bookingTime"
+                label="Booking Time"
+                type="text"
+                fullWidth
+                value={formData.bookingTime}
+                onChange={handleInputChange}
+              />
+            </>
+          ) : selectedView === 'cyberCrime' ? (
+            <>
+              <TextField
+                autoFocus
+                margin="dense"
+                name="name"
+                label="Name"
+                type="text"
+                fullWidth
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="age"
+                label="Age"
+                type="number"
+                fullWidth
+                value={formData.age}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="phoneNumber"
+                label="Phone Number"
+                type="text"
+                fullWidth
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="complaintText"
+                label="Complaint Text"
+                type="text"
+                fullWidth
+                value={formData.complaintText}
+                onChange={handleInputChange}
+              />
+            </>
+          ) : selectedView === 'napkinRequests' ? (
+            <>
+              <TextField
+                autoFocus
+                margin="dense"
+                name="name"
+                label="Name"
+                type="text"
+                fullWidth
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="address"
+                label="Address"
+                type="text"
+                fullWidth
+                value={formData.address}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="location"
+                label="Location"
+                type="text"
+                fullWidth
+                value={formData.location}
+                onChange={handleInputChange}
+              />
+              <TextField
+                margin="dense"
+                name="requestDate"
+                label="Request Date"
+                type="date"
+                fullWidth
+                value={formData.requestDate}
+                onChange={handleInputChange}
+              />
+            </>
+          ) : null}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary">
+            {currentItem ? 'Update' : 'Add'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+};
+
+export default Dashboard;

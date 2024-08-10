@@ -1,0 +1,69 @@
+.cyber-complaint-page {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../assets/cyberr.jpg'); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f4f4f4; /* Fallback color */
+  display: flex;
+  height: 100vh;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.cyber-complaint-container {
+  max-width: 500px; /* Set a maximum width */
+  width: 100%; /* Allow container to be responsive */
+  padding: 20px;
+  background: #FFC0CB;
+  margin-left: 680px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 98px rgba(0, 0, 0, 0.1);
+  height: auto; /* Adjust height based on content */
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.complaint-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.complaint-form input,
+.complaint-form select,
+.complaint-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%; /* Full width of the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.complaint-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #E37383;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%; /* Full width of the container */
+}
+
+.complaint-form button:hover {
+  background-color: #a35662;
+}
+
+.error-message, .success-message {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+}

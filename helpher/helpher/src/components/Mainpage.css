@@ -1,0 +1,169 @@
+/* .main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffe4e1;
+  height: 110vh;
+  background-image: url('../assets/main.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header {
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: #ca6877;
+  margin-left: -80px;
+}
+
+.services-section {
+  text-align: center;
+  margin-top: 150px;
+}
+
+.services-section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.service-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 131px;
+  height: 131px;
+  background-color: #E37383;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgb(0, 0, 0);
+  transition: transform 0.3s ease;
+  text-align: center;
+  padding: 10px;
+  margin-top: 90px;
+}
+
+.service-circle img {
+  width: 50px;
+  height: auto; 
+  margin-bottom: 10px;
+}
+
+.service-circle p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.service-circle:hover {
+  transform: scale(1.1);
+  background-color: #f5abb7;
+}
+.logo-image2{
+  width: 25px;
+  margin-left: 1100px;
+}
+.logo-image2:hover{
+  transform: scale(1.5);
+}  */
+
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffe4e1;
+  height: 110vh;
+  background-image: url('../assets/main.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Align items vertically */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px; /* Space below header */
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: #ca6877;
+  margin: 0; /* Remove default margin */
+}
+
+.logo-image2 {
+  width: 25px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.logo-image2:hover {
+  transform: scale(1.5);
+}
+
+.services-section {
+  text-align: center;
+  margin-top: 20px; /* Adjusted margin for better alignment */
+}
+
+.services-section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.service-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 131px;
+  height: 131px;
+  background-color: #E37383;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgb(0, 0, 0);
+  transition: transform 0.3s ease;
+  text-align: center;
+  padding: 10px;
+  margin-top: 280px; /* Adjusted margin to avoid overlap */
+}
+
+.service-circle img {
+  width: 50px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.service-circle p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.service-circle:hover {
+  transform: scale(1.1);
+  background-color: #f5abb7;
+}
